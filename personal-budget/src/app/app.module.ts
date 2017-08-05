@@ -11,19 +11,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { BudgetListComponent } from './budget-list/budget-list.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCiHx0l88OuPLYHE4k8vbaqyaYDWhoFFjc",
   authDomain: "personalbudget-79daa.firebaseapp.com",
   databaseURL: "https://personalbudget-79daa.firebaseio.com",
   projectId: "personalbudget-79daa",
-  storageBucket: "",
+  storageBucket: "personalbudget-79daa.appspot.com",
   messagingSenderId: "721362803306"
 };
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BudgetListComponent
   ],
   imports: [
     BrowserModule,

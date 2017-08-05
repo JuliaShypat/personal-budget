@@ -1,12 +1,6 @@
-<md-toolbar color="primary">
+app component
+<ul>
+  <li *ngFor="let item of items| async">{{item}}</li>
+</ul>
 
-    <span>MyCompany</span>
-    <span class="example-spacer"></span>
-    <button md-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon> Menu</button>
-    
-</md-toolbar>
-
-<md-menu #appMenu="mdMenu">
-  <button md-menu-item> Settings </button>
-  <button md-menu-item> Help </button>
-</md-menu>
+<app-budget-list></app-budget-list>
