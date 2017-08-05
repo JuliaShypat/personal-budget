@@ -1,6 +1,6 @@
-app component
-<ul>
-  <li *ngFor="let item of items| async">{{item}}</li>
-</ul>
-
-<app-budget-list></app-budget-list>
+<h3>Hello</h3>
+<div> {{ (user | async)?.displayName}} </div>
+<button (click)="loginFacebook()">Login with Facebook</button>
+<button (click)="loginGoogle()">Login with Google</button>
+<button (click)="logout()">Logout</button>
+<!--app-budget-list></app-budget-list-->
