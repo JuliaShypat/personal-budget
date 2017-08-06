@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { HttpModule } from '@angular/http';
 import * as firebase from "firebase";
-
+import { Routes, RouterModule } from "@angular/router";
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
-
+import { MdInputModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BudgetListComponent } from './budget-list/budget-list.component';
+import { LoginComponent } from './login/login.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCiHx0l88OuPLYHE4k8vbaqyaYDWhoFFjc",
@@ -23,14 +24,23 @@ export const firebaseConfig = {
   messagingSenderId: "721362803306"
 };
 
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'dashboard', component: BudgetListComponent }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
-    BudgetListComponent
+    BudgetListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -39,7 +49,8 @@ export const firebaseConfig = {
     MdMenuModule,
     MdCardModule,
     MdToolbarModule,
-    MdIconModule
+    MdIconModule,
+    MdInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
