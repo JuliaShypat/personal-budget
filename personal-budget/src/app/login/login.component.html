@@ -1,6 +1,8 @@
 <div class="text-center">
   <h3>Welcome to Personal Budget</h3>
   <div> {{ (user | async)?.displayName}} </div>
+  <h3>Hello {{displayName}}</h3>
+  <img src="{{photoURL}}" *ngIf="photoURL" alt="">
 
   <form class="login-form">
     <md-input-container class="login-full-width">
@@ -23,5 +25,6 @@
   <p>OR</p>
   <button md-button (click)="loginFacebook()">Login with Facebook</button><br>
   <button md-button (click)="loginGoogle()">Login with Google</button><br>
-  <a> Sign up now !</a>
+  <button md-button (click)="logout()">Log out</button><br>
+  <button md-button (click)="register()">Register</button>
 </div>

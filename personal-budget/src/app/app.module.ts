@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BudgetListComponent } from './budget-list/budget-list.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from "./login/login.service";
+import { AuthGuard } from "./authGuard.service";
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCiHx0l88OuPLYHE4k8vbaqyaYDWhoFFjc",
@@ -26,7 +29,7 @@ export const firebaseConfig = {
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: BudgetListComponent }
+  { path: 'dashboard', canActivate: [AuthGuard], component: BudgetListComponent }
 ]
 
 @NgModule({
@@ -52,7 +55,7 @@ const appRoutes: Routes = [
     MdIconModule,
     MdInputModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
