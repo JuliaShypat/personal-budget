@@ -31,6 +31,17 @@ export class AuthService {
 
         })
     }
+    getCurrentUser() {
+        return new Promise(function (resolve, reject) {
+             this.afAuth.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    resolve(user.uid);
+                } else {
+                    reject(Error('It broke'));
+                }
+            });
+        });
+    }
     loginFacebook() {
         this.afAuth.auth.signInWithPopup(this.providerFacebook)
             .then(authState => {
@@ -58,6 +69,7 @@ export class AuthService {
     logout() {
         this.afAuth.auth.signOut();
         this.logedIn = false;
+        this.router.navigate(["/login"]);
     }
 
     isLogedIn() {

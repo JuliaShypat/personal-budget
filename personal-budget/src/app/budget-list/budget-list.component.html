@@ -1,15 +1,5 @@
-<h3>Cuisines List</h3>
-
+<h3>Budget List</h3>
+<button (click)="addNewItem()">Add</button>
 <ul>
-  <li *ngFor="let c of cuisines | async">{{c.$key + "- "+c.$value}}</li>
-</ul>
-<h3>Restaurants</h3>
-<ul>
-  <li *ngFor="let r of restaurants | async">{{r.name}} - {{(r.cuisineType |async)?.$value }}
-    <ul>
-      <li *ngFor="let f of r.featureTypes">
-        {{(f | async)?.$value}}
-      </li>
-    </ul>
-  </li>
+  <li *ngFor="let b of budgets | async">{{b.name}}</li>
 </ul>

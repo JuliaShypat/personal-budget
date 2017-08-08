@@ -16,6 +16,10 @@ import { BudgetListComponent } from './budget-list/budget-list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from "./login/login.service";
 import { AuthGuard } from "./authGuard.service";
+import { MenuComponent } from './shared/menu/menu.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 
 
 export const firebaseConfig = {
@@ -29,14 +33,19 @@ export const firebaseConfig = {
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', canActivate: [AuthGuard], component: BudgetListComponent }
+  { path: 'dashboard', canActivate: [AuthGuard], component: BudgetListComponent },
+  { path: 'login', component: LoginComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     BudgetListComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    SidebarComponent,
+    DashboardComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
