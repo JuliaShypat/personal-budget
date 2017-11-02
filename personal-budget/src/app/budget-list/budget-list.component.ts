@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireObject  } from "angularfire2/database";
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import 'rxjs/add/operator/map';
@@ -15,42 +15,42 @@ import { AuthService } from "../login/login.service";
   providers: [AuthService]
 })
 export class BudgetListComponent implements OnInit {
-  items: FirebaseListObservable<any[]>;
-  cuisines: FirebaseListObservable<any[]>;
+  items: AngularFireObject<any[]>;
+  cuisines: AngularFireObject<any[]>;
   restaurants: Observable<any[]>;
   budgets: Observable<any[]>;
   user: Observable<firebase.User>;
   person: firebase.User;
 
   userID: string;
-  constructor(private afAuth: AngularFireAuth, public af: AngularFireDatabase, public AuthService: AuthService) {
-    this.user = afAuth.authState.map(user => {
+  constructor(public AuthService: AuthService, public db: AngularFirestore) {
+   /* this.user = afAuth.authState.map(user => {
       return user;
     });
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.userID = user.uid;
       }
-    });
+    });*/
   }
 
   ngOnInit() {
-  
-      this.budgets = this.af.list('/budget/' + this.userID, {
+
+      /*this.budgets = this.af.list<Item>('/budget/' + this.userID, {
         query: {
           orderByValue: true
         }
-      });
+      });*/
 
-    
+/*
     console.log("ngoninit", this.userID);
-    this.cuisines = this.af.list('/cuisines', {
+    this.cuisines = this.af.list<Item>('/cuisines', {
       query: {
         orderByValue: true
       }
-    });
-
-    this.restaurants = this.af.list('/restaurants', {
+    });*/
+/*
+    this.restaurants = this.af.list<Item>('/restaurants', {
       query: {
         orderByChild: "rating",
         equalTo: 5,
@@ -66,12 +66,12 @@ export class BudgetListComponent implements OnInit {
           }
         });
         return restaurants;
-      });
+      });*/
 
 
   }
   addNewItem() {
-    if (!this.userID)
+   /* if (!this.userID)
       return;
     this.af.list("/budget/" + this.userID).push({})
       .then(x => {
@@ -79,7 +79,7 @@ export class BudgetListComponent implements OnInit {
         let update = {};
         update['budget/' + this.userID + '/' + x.key] = budget;
         this.af.object('/').update(update);
-      })
+      })*/
   }
 
 }

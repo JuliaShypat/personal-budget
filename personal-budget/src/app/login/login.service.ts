@@ -1,14 +1,15 @@
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { FirebaseApp, AngularFireModule } from 'angularfire2';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 
-@Injectable() // <<<=== required if the constructor has parameters 
+@Injectable() // <<<=== required if the constructor has parameters
 export class AuthService {
     user: Observable<firebase.User>;
     displayName: string;
