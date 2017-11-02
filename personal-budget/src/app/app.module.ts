@@ -7,6 +7,7 @@ import { Routes, RouterModule } from "@angular/router";
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
