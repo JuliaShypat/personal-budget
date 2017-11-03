@@ -20,6 +20,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AccountListComponent } from './account-list/account-list.component';
 
 
 export const firebaseConfig = {
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'budgets', canActivate: [AuthGuard], component: BudgetListComponent }
+  { path: 'budgets', canActivate: [AuthGuard], component: BudgetListComponent },
+  { path: 'accounts', canActivate: [AuthGuard], component: AccountListComponent }
 ]
 
 @NgModule({
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     MenuComponent,
     SidebarComponent,
     DashboardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AccountListComponent
   ],
   imports: [
     BrowserModule,

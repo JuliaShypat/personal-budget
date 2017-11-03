@@ -3,18 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { AuthService } from "../login/login.service";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-export interface Item { name: string; }
-
-
 
 @Component({
   selector: 'app-budget-list',
   templateUrl: './budget-list.component.html',
-  styleUrls: ['./budget-list.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./budget-list.component.css']
 })
 export class BudgetListComponent implements OnInit {
   user: firebase.User;
@@ -22,7 +17,7 @@ export class BudgetListComponent implements OnInit {
   budgets: Observable<any[]>
   counter: number = 1;
 
-  constructor(public AuthService: AuthService, private afAuth: AngularFireAuth, public db: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
   }
 
