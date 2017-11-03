@@ -7,8 +7,6 @@ import { Routes, RouterModule } from "@angular/router";
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +19,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './shared/user-profile/user-profile.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 export const firebaseConfig = {
@@ -60,6 +59,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
+    AngularFirestoreModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,

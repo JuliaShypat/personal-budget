@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database";
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { AuthService } from "../login/login.service";
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+export interface Item { name: string; }
+
 
 
 @Component({
@@ -15,66 +17,35 @@ import { AngularFireAuth } from 'angularfire2/auth';
   providers: [AuthService]
 })
 export class BudgetListComponent implements OnInit {
-  items: AngularFireObject<any[]>;
-  cuisines: AngularFireObject<any[]>;
-  restaurants: Observable<any[]>;
-  budgets: Observable<any[]>;
   user: Observable<firebase.User>;
-  person: firebase.User;
+  itemCollection: AngularFirestoreCollection<any>;
+  items: Observable<any[]>
 
-  userID: string;
-  constructor(public AuthService: AuthService, private afAuth: AngularFireAuth, public db: AngularFireDatabase) {
+  constructor(public AuthService: AuthService, private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = afAuth.authState.map(user => {
       return user;
     });
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.userID = user.uid;
-      }
-    });
+
+    this.itemCollection = this.db.collection<any>('users');
+    this.items = this.itemCollection.valueChanges();
+    console.log(this.items);
   }
 
   ngOnInit() {
-    this.budgets = this.db.list<any>('/budget/' + this.userID).valueChanges();
-    console.log("budgets", this.budgets);
-    /*
-        console.log("ngoninit", this.userID);
-        this.cuisines = this.af.list<Item>('/cuisines', {
-          query: {
-            orderByValue: true
-          }
-        });*/
-    /*
-        this.restaurants = this.af.list<Item>('/restaurants', {
-          query: {
-            orderByChild: "rating",
-            equalTo: 5,
-            limitToFirst: 10
-          }
-        })
-          .map(restaurants => {
-            restaurants.map(restaurant => {
-              restaurant.cuisineType = this.af.object("/cuisines/" + restaurant.cuisine);
-              restaurant.featureTypes = [];
-              for (let f in restaurant.features) {
-                restaurant.featureTypes.push(this.af.object('/features/' + f))
-              }
-            });
-            return restaurants;
-          });*/
-
 
   }
   addNewItem() {
-    /* if (!this.userID)
-       return;
-     this.af.list("/budget/" + this.userID).push({})
-       .then(x => {
-         let budget = { name: "test new" };
-         let update = {};
-         update['budget/' + this.userID + '/' + x.key] = budget;
-         this.af.object('/').update(update);
-       })*/
+    this.db.collection("users").add({
+      first: "Test",
+      last: "Testowy",
+      born: 1815
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
   }
 
 }
