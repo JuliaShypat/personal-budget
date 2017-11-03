@@ -8,7 +8,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BudgetListComponent } from './budget-list/budget-list.component';
@@ -33,8 +33,9 @@ export const firebaseConfig = {
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', canActivate: [AuthGuard], component: BudgetListComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'budgets', canActivate: [AuthGuard], component: BudgetListComponent }
 ]
 
 @NgModule({
@@ -63,7 +64,9 @@ const appRoutes: Routes = [
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

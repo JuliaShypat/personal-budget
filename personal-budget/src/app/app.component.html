@@ -1,13 +1,13 @@
 <app-menu></app-menu>
-<div class="container">
-    <div class="col-sm-4">
-
-    </div>
-    <div class="col-sm-8">
-        <div class="row">
-
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
-
+<mat-sidenav-container>
+  <mat-sidenav #start mode="side" [opened]="true" >
+    <mat-list>
+      <mat-list-item><a routerLink="/budgets" routerLinkActive="active">Budgets</a></mat-list-item>
+      <mat-list-item>Item 2</mat-list-item>
+      <mat-list-item>Item 3</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

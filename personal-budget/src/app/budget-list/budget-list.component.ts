@@ -17,31 +17,27 @@ export interface Item { name: string; }
   providers: [AuthService]
 })
 export class BudgetListComponent implements OnInit {
-  user: Observable<firebase.User>;
-  itemCollection: AngularFirestoreCollection<any>;
-  items: Observable<any[]>
+  user: firebase.User;
+  budgetsCollection: AngularFirestoreCollection<any>;
+  budgets: Observable<any[]>
+  counter: number = 1;
 
   constructor(public AuthService: AuthService, private afAuth: AngularFireAuth, public db: AngularFirestore) {
-    this.user = afAuth.authState.map(user => {
-      return user;
-    });
-
-    this.itemCollection = this.db.collection<any>('users');
-    this.items = this.itemCollection.valueChanges();
-    console.log(this.items);
+    this.user = firebase.auth().currentUser;
   }
 
   ngOnInit() {
-
+    this.budgetsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('budgets');
+    this.budgets = this.budgetsCollection.valueChanges();
   }
   addNewItem() {
-    this.db.collection("users").add({
-      first: "Test",
-      last: "Testowy",
-      born: 1815
+    const self = this;
+    this.db.collection("users").doc(this.user.uid).collection<any>('budgets').add({
+      name: "Test"+this.counter,
     })
     .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+        console.log(docRef);
+        self.counter +=1;
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);

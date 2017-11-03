@@ -1,11 +1,8 @@
-{{ (user | async)?.displayName}}
-
 <h3>Budget List</h3>
 <button (click)="addNewItem()">Add</button>
 <ul>
   <li *ngFor="let b of budgets | async">{{b.name}}</li>
 </ul>
 <p *ngFor="let item of items | async">
-  {{ item.first }}
-  {{ item.last }}
+  {{ item.name }}
 </p>
