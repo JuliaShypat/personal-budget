@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-account-list',
@@ -25,5 +27,20 @@ export class AccountListComponent implements OnInit {
     this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
     this.accounts = this.accountsCollection.valueChanges();
   }
-
+  addNewAccount(form: NgForm) {
+    console.log(form.value);
+    const newAccount = {
+      account_name: form.value.title,
+      bank: form.value.bank,
+      balance: form.value.balance,
+      currency: form.value.currency
+    }
+    this.db.collection("users").doc(this.user.uid).collection<any>('accounts').add(newAccount)
+    .then(function(docRef) {
+        console.log(docRef);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+  }
 }

@@ -1,4 +1,30 @@
 <h3>Accounts List</h3>
+<div><button mat-button>Add new account</button></div>
+<div>
+  <form #newAccountForm="ngForm" (ngSubmit)="addNewAccount(newAccountForm)">
+    <mat-form-field>
+      <input matInput name="title" placeholder="Account Name" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Bank" name="bank" ngModel>
+        <mat-option value="bzwbk">BZWBK</mat-option>
+        <mat-option value="mill">Millenium</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="balance" matInput placeholder="Account Balance" ngModel>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Currency" name="currency" ngModel>
+        <mat-option value="pln">PLN</mat-option>
+        <mat-option value="eur">EUR</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Add</button>
+  </form>
+</div>
 <mat-list>
-  <mat-list-item *ngFor="let a of accounts | async">{{a.account_name}}</mat-list-item>
+  <mat-list-item *ngFor="let a of accounts | async">
+    {{a.account_name}} {{a.bank}} {{a.balance}} {{a.currency}}
+  </mat-list-item>
 </mat-list>
