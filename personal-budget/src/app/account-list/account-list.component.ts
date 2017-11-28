@@ -18,6 +18,7 @@ export class AccountListComponent implements OnInit {
   accountsCollection: AngularFirestoreCollection<any>;
   accounts: Observable<any[]>
   counter: number = 1;
+  isFormVisible: boolean = false;
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
@@ -26,6 +27,9 @@ export class AccountListComponent implements OnInit {
   ngOnInit() {
     this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
     this.accounts = this.accountsCollection.valueChanges();
+  }
+  showForm() {
+    this.isFormVisible = true;
   }
   addNewAccount(form: NgForm) {
     console.log(form.value);
