@@ -28,7 +28,6 @@
 <section class='accounts-list'>
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile *ngFor="let a of accounts | async">
-      {{a | json}}
       <mat-card class='account-card'>
         <mat-card-header>
           <mat-card-title>{{a.account_name}}</mat-card-title>

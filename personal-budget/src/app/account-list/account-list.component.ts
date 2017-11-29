@@ -7,12 +7,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { NgForm } from '@angular/forms';
 
+export interface Account { account_name: string, balance: string, bank: string, currency: string }
 
 @Component({
   selector: 'app-account-list',
   templateUrl: './account-list.component.html',
   styleUrls: ['./account-list.component.css']
 })
+
+
 export class AccountListComponent implements OnInit {
   user: firebase.User;
   accountsCollection: AngularFirestoreCollection<any>;
@@ -22,11 +25,18 @@ export class AccountListComponent implements OnInit {
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
+    this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
+    this.accounts = this.accountsCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Account;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
   }
 
   ngOnInit() {
-    this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
-    this.accounts = this.accountsCollection.valueChanges();
+
   }
   showForm() {
     this.isFormVisible = true;
@@ -39,21 +49,21 @@ export class AccountListComponent implements OnInit {
       balance: form.value.balance,
       currency: form.value.currency
     }
-    this.db.collection("users").doc(this.user.uid).collection<any>('accounts').add(newAccount)
-    .then(function(docRef) {
-        console.log(docRef);
-    })
-    .catch(function(error) {
+    this.accountsCollection.add(newAccount)
+      .then(function (docRef) {
+      })
+      .catch(function (error) {
         console.error("Error adding document: ", error);
-    });
+      });
+  }
+  update(item: Account) {
+
   }
 
   deleteAccount(id) {
-    console.log(id);
-    this.db.collection("users").doc(this.user.uid).collection<any>('accounts').doc('szItbgr8XFOPMlfVqXk1').delete().then(function() {
-    console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
+    this.accountsCollection.doc(id).delete().then(function () {
+    }).catch(function (error) {
+      console.error("Error removing document: ", error);
     });
   }
 }
