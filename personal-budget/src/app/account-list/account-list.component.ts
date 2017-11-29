@@ -47,4 +47,13 @@ export class AccountListComponent implements OnInit {
         console.error("Error adding document: ", error);
     });
   }
+
+  deleteAccount(id) {
+    console.log(id);
+    this.db.collection("users").doc(this.user.uid).collection<any>('accounts').doc('szItbgr8XFOPMlfVqXk1').delete().then(function() {
+    console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+  }
 }
