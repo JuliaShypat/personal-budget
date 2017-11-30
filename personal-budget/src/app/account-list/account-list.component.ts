@@ -22,6 +22,7 @@ export class AccountListComponent implements OnInit {
   accounts: Observable<any[]>
   counter: number = 1;
   isFormVisible: boolean = false;
+  isSpinnerVisible: boolean = false;
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
@@ -61,7 +62,8 @@ export class AccountListComponent implements OnInit {
   }
 
   deleteAccount(id) {
-    this.accountsCollection.doc(id).delete().then(function () {
+    this.accountsCollection.doc(id).delete()
+    .then(function () {
     }).catch(function (error) {
       console.error("Error removing document: ", error);
     });

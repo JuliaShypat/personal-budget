@@ -25,6 +25,7 @@
     </form>
   </div>
 </section>
+<mat-spinner *ngIf="isSpinnerVisible"></mat-spinner>
 <section class='accounts-list'>
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile *ngFor="let a of accounts | async">
