@@ -1,0 +1,11 @@
+<div *ngFor="let g of generals | async">
+  <p>
+     Your balance is: {{g.currentValue}}
+  </p>
+   <form #balanceForm="ngForm" (ngSubmit)="updateBalance(balanceForm, g)">
+    <mat-form-field>
+      <input matInput name="balance" placeholder="New Balance" ngModel>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Update</button>
+  </form>
+</div>

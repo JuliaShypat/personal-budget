@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AccountListComponent } from './account-list/account-list.component';
+import { BalanceComponent } from './balance/balance.component';
 
 
 export const firebaseConfig = {
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     DashboardComponent,
     UserProfileComponent,
-    AccountListComponent
+    AccountListComponent,
+    BalanceComponent
   ],
   imports: [
     BrowserModule,
