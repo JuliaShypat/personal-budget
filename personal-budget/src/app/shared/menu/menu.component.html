@@ -1,16 +1,20 @@
 <mat-toolbar color="primary">
   <span>Personal Budget</span>
-  <a class="docs-button mat-button" mat-button="" routerlink="components" aria-disabled="false" tabindex="0" href="/dashboard"><span class="mat-button-wrapper">Dashboard</span><div class="mat-button-ripple mat-ripple" mat-ripple=""></div><div class="mat-button-focus-overlay"></div></a>
+  <a class="docs-button mat-button" mat-button="" routerlink="components" aria-disabled="false" tabindex="0" href="/dashboard">
+  <span class="mat-button-wrapper">Dashboard</span><div class="mat-button-ripple mat-ripple" mat-ripple=""></div><div class="mat-button-focus-overlay"></div></a>
+  <a class="docs-button mat-button" routerLink="/budgets" routerLinkActive="active"><span class="mat-button-wrapper">Budgets</span><div class="mat-button-ripple mat-ripple" mat-ripple=""></div><div class="mat-button-focus-overlay"></div></a>
+  <a class="docs-button mat-button" routerLink="/accounts" routerLinkActive="active"><span class="mat-button-wrapper">Accounts</span><div class="mat-button-ripple mat-ripple" mat-ripple=""></div><div class="mat-button-focus-overlay"></div></a>
+    <a class="docs-button mat-button" routerLink="/expences" routerLinkActive="active"><span class="mat-button-wrapper">Expences</span><div class="mat-button-ripple mat-ripple" mat-ripple=""></div><div class="mat-button-focus-overlay"></div></a>
   <div class="pull-right">
     <button mat-icon-button [matMenuTriggerFor]="menu">
-  <mat-icon>more_vert</mat-icon>
-</button>
+    <mat-icon>more_vert</mat-icon>
+    </button>
 
     <mat-menu #menu="matMenu">
       <button (click)="logout()" mat-menu-item>
     <mat-icon>face</mat-icon>
     <span>Logout</span>
-  </button>
+    </button>
     </mat-menu>
   </div>
 </mat-toolbar>

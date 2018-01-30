@@ -1,12 +1,5 @@
 <mat-sidenav-container fullscreen>
   <app-menu></app-menu>
-  <mat-sidenav #start mode="side" [opened]="true" >
-    <mat-list>
-      <mat-list-item><a routerLink="/budgets" routerLinkActive="active">Budgets</a></mat-list-item>
-      <mat-list-item><a routerLink="/accounts" routerLinkActive="active">Accounts</a></mat-list-item>
-      <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
-  </mat-sidenav>
   <div class="container">
     <router-outlet></router-outlet>
   </div>

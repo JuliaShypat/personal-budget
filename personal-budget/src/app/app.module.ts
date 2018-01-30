@@ -9,6 +9,29 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatButtonToggleModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BudgetListComponent } from './budget-list/budget-list.component';
@@ -22,6 +45,7 @@ import { UserProfileComponent } from './shared/user-profile/user-profile.compone
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AccountListComponent } from './account-list/account-list.component';
 import { BalanceComponent } from './balance/balance.component';
+import { ExpencesComponent } from './expences/expences.component';
 
 
 export const firebaseConfig = {
@@ -38,7 +62,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'budgets', canActivate: [AuthGuard], component: BudgetListComponent },
-  { path: 'accounts', canActivate: [AuthGuard], component: AccountListComponent }
+  { path: 'accounts', canActivate: [AuthGuard], component: AccountListComponent },
+  { path: 'expences',  canActivate: [AuthGuard], component: ExpencesComponent }
 ]
 
 @NgModule({
@@ -51,7 +76,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     UserProfileComponent,
     AccountListComponent,
-    BalanceComponent
+    BalanceComponent,
+    ExpencesComponent
   ],
   imports: [
     BrowserModule,
