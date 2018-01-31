@@ -15,11 +15,11 @@ import { NgForm } from '@angular/forms';
 export class BalanceComponent implements OnInit {
   user: firebase.User;
   generalColection: AngularFirestoreCollection<any>;
-  generals: Observable<any[]>
+  generals: Observable<any[]>;
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
-    //this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
+    // this.accountsCollection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('accounts');
     this.generalColection = this.db.collection<any>('users').doc(this.user.uid).collection<any>('general');
     this.generals = this.generalColection.snapshotChanges().map(generals => {
         return generals.map(g => {
@@ -38,14 +38,14 @@ export class BalanceComponent implements OnInit {
     const newBalance = {
       currentValue: form.value.balance,
       previousValue: general.currentValue
-    }
+    };
     console.log(newBalance);
-    this.generalColection.doc("balance").set(newBalance)
+    this.generalColection.doc('balance').set(newBalance)
     .then(function() {
-        console.log("Document successfully written!");
+        console.log('Document successfully written!');
     })
     .catch(function(error) {
-        console.error("Error writing document: ", error);
+        console.error('Error writing document: ', error);
     });
 
   }
@@ -54,14 +54,14 @@ export class BalanceComponent implements OnInit {
     const newBalance = {
       currentValue: form.value.balance,
       previousValue: form.value.balance
-    }
+    };
     console.log(newBalance);
-    this.generalColection.doc("balance").set(newBalance)
+    this.generalColection.doc('balance').set(newBalance)
     .then(function() {
-        console.log("Document successfully written!");
+        console.log('Document successfully written!');
     })
     .catch(function(error) {
-        console.error("Error writing document: ", error);
+        console.error('Error writing document: ', error);
     });
 
   }

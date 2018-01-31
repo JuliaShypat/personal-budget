@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { NgForm } from '@angular/forms';
 
-export interface Account { account_name: string, balance: string, bank: string, currency: string }
+export interface Account { account_name: string; balance: string; bank: string; currency: string; }
 
 @Component({
   selector: 'app-account-list',
@@ -19,10 +19,10 @@ export interface Account { account_name: string, balance: string, bank: string, 
 export class AccountListComponent implements OnInit {
   user: firebase.User;
   accountsCollection: AngularFirestoreCollection<any>;
-  accounts: Observable<any[]>
-  counter: number = 1;
-  isFormVisible: boolean = false;
-  isSpinnerVisible: boolean = false;
+  accounts: Observable<any[]>;
+  counter = 1;
+  isFormVisible = false;
+  isSpinnerVisible = false;
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFirestore) {
     this.user = firebase.auth().currentUser;
@@ -49,12 +49,12 @@ export class AccountListComponent implements OnInit {
       bank: form.value.bank,
       balance: form.value.balance,
       currency: form.value.currency
-    }
+    };
     this.accountsCollection.add(newAccount)
       .then(function (docRef) {
       })
       .catch(function (error) {
-        console.error("Error adding document: ", error);
+        console.error('Error adding document: ', error);
       });
   }
   update(item: Account) {
@@ -65,7 +65,7 @@ export class AccountListComponent implements OnInit {
     this.accountsCollection.doc(id).delete()
     .then(function () {
     }).catch(function (error) {
-      console.error("Error removing document: ", error);
+      console.error('Error removing document: ', error);
     });
   }
 }
